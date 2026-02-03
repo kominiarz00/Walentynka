@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Walentynka ❤️</title>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 2.3em;
+        color: #b30059;
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 200px;
+        width: 100%;
+    }
+
+    button {
+        font-size: 1.5em;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background-color: #ff4d88;
+        color: white;
+        margin-right: 20px;
+    }
+
+    #no {
+        background-color: #999;
+        color: white;
+        position: absolute;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 28px;
+        animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-800px); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>Oliwka, zostaniesz moją walentynką? ❤️</h1>
+
+<div class="buttons">
+    <button id="yes">TAK ❤️</button>
+    <button id="no">NIE 💔</button>
+</div>
+
+<script>
+    const noButton = document.getElementById("no");
+
+    function moveNoButton() {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 80);
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
+    }
+
+    // Ucieka na komputerze i telefonie
+    ["mouseover", "touchstart", "click"].forEach(event => {
+        noButton.addEventListener(event, moveNoButton);
+    });
+
+    document.getElementById("yes").addEventListener("click", () => {
+        document.body.innerHTML = "<h1>Kocham Cię buba ❤️</h1>";
+        for (let i = 0; i < 35; i++) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerText = Math.random() > 0.5 ? "❤️" : "💖";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(heart);
+        }
+    });
+</script>
+
+</body>
+</html>
